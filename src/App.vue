@@ -1,30 +1,35 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app">
+    <aside-menu @triggerMarkerPopup="openPopup" ref="menu" />
+    <mask-map ref="map" />
+    <light-box />
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapActions } from 'vuex';
+import asideMenu from './components/asideMenu.vue';
+import lightBox from './components/lightbox.vue';
+import maskMap from './components/maskMap.vue'; 
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default {
+  name: 'App',
+  components: {
+    asideMenu,
+    lightBox,
+    maskMap
+  },
+  methods: {
+    ...mapActions(['fetchLocations', 'fetchPharmacies']),
+    openPopup(id) {
+      this.$refs.map.triggerPopup(id);
+    },
+  },
+  mounted () {
+    this.fetchLocations();
+    this.fetchPharmacies();
   }
 }
-</style>
+</script>
+
+<style lang="scss" src="./style.scss"></style>
