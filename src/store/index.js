@@ -32,8 +32,8 @@ export default createStore({
       
       // 加入關鍵字判斷功能
       return state.keywords
-        ? stores.filter((d) => d.name.includes(state.keywords))
-        : stores.filter((d) => d.county === state.currCity && d.town === state.currDistrict);
+        ?stores.filter((d) => d.name.includes(state.keywords))
+        :stores.filter((d) => d.county === state.currCity && d.town === state.currDistrict);
     },
     currDistrictInfo(state, getters) {
       // 目前所選行政區資訊

@@ -1,7 +1,5 @@
 <template>
-  <!-- aside-menu 左側欄 -->
   <div class="aside-menu">
-
     <div class="wraps">
       <label>
         縣市：<select v-model="currCity">
@@ -24,18 +22,17 @@
     </div>
 
     <ul class="store-lists">
-      <li class="store-info wraps" 
-        v-for="s in filteredStores" :key="s.id" @click="$emit('triggerMarkerPopup', s.id)">
-        
+      <li class="store-info wraps" v-for="s in filteredStores" :key="s.id" @click="$emit('triggerMarkerPopup', s.id)">
+
         <h1 v-html="keywordHighlight(s.name)"></h1>
 
         <div class="mask-info">
-          <i class="fas fa-head-side-mask"></i>
+          <i class="fa-solid fa-mask-face"></i>
           <span>大人口罩: {{ s.mask_adult }} 個</span>
         </div>
 
         <div class="mask-info">
-          <i class="fas fa-baby"></i>
+          <i class="fa-solid fa-baby"></i>
           <span>兒童口罩: {{ s.mask_child }} 個</span>
         </div>
 
@@ -49,13 +46,12 @@
         </button>
       </li>
     </ul>
-
   </div>
+
 </template>
 
 <script>
 import { mapGetters, mapState } from 'vuex';
-
 export default {
   name: 'asideMenu',
   computed: {
@@ -82,7 +78,7 @@ export default {
       set(value) {
         this.$store.commit('setKeywords', value);
       },
-    }, 
+    },
     showModal: {
       get() {
         return this.$store.state.showModal;
@@ -117,10 +113,11 @@ export default {
     },
   },
 }
+
 </script>
 
 <style>
 .highlight {
-  color: #f08d49;
+  color: #fd8383;
 }
 </style>
